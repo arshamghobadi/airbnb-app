@@ -4,10 +4,16 @@ import Avatar from '../Avatar';
 import { useCallback, useState } from 'react';
 import MenuItems from './MenuItems';
 import useRegisterModal from '@/app/hooks/useRegisterModal';
-type Props = {};
+import useLoginModal from '@/app/hooks/useLoginModal';
 
-const UserMenu = (props: Props) => {
+import { signOut } from 'next-auth/react';
+import { safeUser } from '@/app/types';
+interface UserMenuProps {
+  currentUser?: safeUser | null;
+}
+const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
   const registerModal = useRegisterModal();
+  const loginModal = useLoginModal();
   const [isOpen, setIsOpen] = useState(false);
   const toggleOpen = useCallback(() => {
     setIsOpen((value) => !value);
@@ -28,7 +34,7 @@ const UserMenu = (props: Props) => {
         >
           <AiOutlineMenu />
           <div className="hidden md:block">
-            <Avatar />
+            <Avatar userImage={currentUser?.image} />
           </div>
         </div>
       </div>
@@ -38,10 +44,22 @@ const UserMenu = (props: Props) => {
         bg-white overflow-hidden right-0 top-12 text-sm"
         >
           <div className="flex flex-col cursor-pointer">
-            <>
-              <MenuItems label="Login" onClick={() => {}} />
-              <MenuItems label="SignUp" onClick={registerModal.onOpen} />
-            </>
+            {currentUser ? (
+              <>
+                <MenuItems label="My trips" onClick={() => {}} />
+                <MenuItems label="My favorites" onClick={() => {}} />
+                <MenuItems label="My reservations" onClick={() => {}} />
+                <MenuItems label="My properties" onClick={() => {}} />
+                <MenuItems label="Airbnb my home" onClick={() => {}} />
+                <hr />
+                <MenuItems label="Logout" onClick={() => signOut()} />
+              </>
+            ) : (
+              <>
+                <MenuItems label="Login" onClick={loginModal.onOpen} />
+                <MenuItems label="SignUp" onClick={registerModal.onOpen} />
+              </>
+            )}
           </div>
         </div>
       )}
