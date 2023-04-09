@@ -3,7 +3,7 @@ import { FcGoogle } from 'react-icons/fc';
 import { AiFillGithub } from 'react-icons/ai';
 import { useForm, SubmitHandler, FieldValues } from 'react-hook-form';
 import useRegisterModal from '@/app/hooks/useRegisterModal';
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import axios from 'axios';
 import Modal from './Modal';
 import Heading from '../Heading';
@@ -45,6 +45,10 @@ const LoginModal = () => {
       }
     });
   };
+  const toggle = useCallback(() => {
+    loginModal.onClose();
+    registerModal.onOpen();
+  }, [loginModal, registerModal]);
 
   const bodyContent = (
     <div className="flex flex-col gap-4">
@@ -87,12 +91,12 @@ const LoginModal = () => {
       />
       <div className=" text-neutral-500 text-center mt-4 font-light">
         <div className="flex justify-center items-center gap-2">
-          <div>Already have an account?</div>
+          <div>First time using Airbnb</div>
           <div
-            onClick={registerModal.onClose}
+            onClick={toggle}
             className=" text-neutral-800 cursor-pointer hover:underline"
           >
-            Log in
+            carete an account
           </div>
         </div>
       </div>
