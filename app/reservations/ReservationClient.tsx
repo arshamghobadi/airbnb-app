@@ -8,12 +8,12 @@ import Container from '../components/Container';
 import Heading from '../components/Heading';
 import ListingCard from '../components/listings/ListingCard';
 
-interface TripsClientProps {
+interface ReservationClientProps {
   reservations: SafeReservation[];
   currentUser: safeUser | null;
 }
 
-const TripsClient: React.FC<TripsClientProps> = ({
+const ReservationClient: React.FC<ReservationClientProps> = ({
   currentUser,
   reservations,
 }) => {
@@ -56,7 +56,7 @@ const TripsClient: React.FC<TripsClientProps> = ({
             actionId={reservation.id}
             onAction={onCansel}
             disabled={deletingId === reservation.id}
-            actionLabel="Cansel reservation"
+            actionLabel="Cansel huest reservation"
             currentUser={currentUser}
           />
         ))}
@@ -65,4 +65,4 @@ const TripsClient: React.FC<TripsClientProps> = ({
   );
 };
 
-export default TripsClient;
+export default ReservationClient;
