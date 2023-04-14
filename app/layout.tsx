@@ -7,6 +7,7 @@ import LoginModal from './components/modals/LoginModal';
 import getCurrentUser from './actions/getCurrentUser';
 import ClientOnly from './components/ClientOnly';
 import RentModal from './components/modals/RentModal';
+import SearchModal from './components/modals/SearchModal';
 export const metadata = {
   title: 'Aribnb',
   description: 'created by arsham ghobadi',
@@ -27,6 +28,7 @@ export default async function RootLayout({
         <ClientOnly>
           <ToasterProvider />
           <LoginModal />
+          <SearchModal />
           <RentModal />
           <RegisterModal />
           <Navbar currentUser={currentUser} />
