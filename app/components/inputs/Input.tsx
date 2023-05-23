@@ -47,7 +47,7 @@ const Input: React.FC<InputProps> = ({
         `}
       />
       <label
-        className={` absolute text-md duration-150 transform
+        className={` absolute text-md duration-150 transform select-none
        -translate-y-3 top-5 z-10 origin-[0]
        ${formatPrice ? 'left-9' : 'left-4'}
         peer-placeholder-shown:scale-100
