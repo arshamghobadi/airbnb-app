@@ -47,6 +47,7 @@ const Search = (props: Props) => {
 
   return (
     <div
+      rel="preload"
       onClick={searchModal.onOpen}
       className=" border-[1px] w-full md:w-auto py-2 rounded-full
    shadow-sm hover:shadow-md transition cursor-pointer"
