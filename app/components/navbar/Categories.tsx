@@ -1,5 +1,5 @@
 'use client';
-import React from 'react';
+import React, { Suspense } from 'react';
 import Container from '../Container';
 import { FaSkiing } from 'react-icons/fa';
 import { IoDiamond } from 'react-icons/io5';
@@ -96,19 +96,21 @@ const Categories = () => {
     return null;
   }
   return (
-    <Container>
-      <div className="pt-4 flex items-center justify-between overflow-x-auto">
-        {categories.map((item) => (
-          <CategoryBox
-            key={item.label}
-            label={item.label}
-            icon={item.icon}
-            description={item.description}
-            selected={category === item.label}
-          />
-        ))}
-      </div>
-    </Container>
+    <Suspense>
+      <Container>
+        <div className="pt-4 flex items-center justify-between overflow-x-auto">
+          {categories.map((item) => (
+            <CategoryBox
+              key={item.label}
+              label={item.label}
+              icon={item.icon}
+              description={item.description}
+              selected={category === item.label}
+            />
+          ))}
+        </div>
+      </Container>
+    </Suspense>
   );
 };
 
