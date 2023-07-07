@@ -1,6 +1,6 @@
 'use client';
 import useSearchModal from '@/app/hooks/useSearchModal';
-import React, { Suspense, useCallback, useMemo, useState } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 import Modal from './Modal';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { Range } from 'react-date-range';
@@ -166,18 +166,16 @@ const SearchModal = () => {
   }
 
   return (
-    <Suspense>
-      <Modal
-        isOpen={searchModal.isOpen}
-        onClose={searchModal.onClose}
-        onSubmit={onSubmit}
-        title="Filters"
-        actionLabel={actionLabel}
-        secondartActionLabel={secondaryActionLabel}
-        secondartAction={step === STEPS.LOCATION ? undefined : onBack}
-        body={bodyContent}
-      />
-    </Suspense>
+    <Modal
+      isOpen={searchModal.isOpen}
+      onClose={searchModal.onClose}
+      onSubmit={onSubmit}
+      title="Filters"
+      actionLabel={actionLabel}
+      secondartActionLabel={secondaryActionLabel}
+      secondartAction={step === STEPS.LOCATION ? undefined : onBack}
+      body={bodyContent}
+    />
   );
 };
 
